@@ -1,0 +1,19 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: platform-config-server
+  cloud:
+    config:
+      server:
+        git:
+          username: 13889503061
+          password: lchg0824
+          search-paths: test-dir
+          uri: https://gitee.com/LeopoldL1an/gitee-config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}:${random.int}

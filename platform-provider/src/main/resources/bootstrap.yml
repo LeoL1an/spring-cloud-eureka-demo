@@ -1,0 +1,15 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}:${random.int}
+spring:
+  cloud:
+    config:
+      name: platform-provider
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: platform-config-server
