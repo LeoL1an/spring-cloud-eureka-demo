@@ -11,16 +11,12 @@
 - openfeign（ribbon、hystrix）
 - spring cloud config客户端
 - zipkin消息追踪
-###### platform-consumer-consul
-- consul客户端
 ###### platform-eureka
 - eureka服务端
 ###### platform-provider
 - 普通web项目
 - spring cloud config客户端
 - zipkin消息追踪 
-###### platform-provider-consul
-- consul客户端
 ###### platform-service-zuul
 - zuul服务网关
 - spring cloud config客户端
