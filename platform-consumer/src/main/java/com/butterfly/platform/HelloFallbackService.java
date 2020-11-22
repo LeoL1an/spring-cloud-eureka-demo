@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Component
 public class HelloFallbackService implements HelloRemote{
     @Override
-    public String hello(@RequestParam("name") String name) {
-        return "服务降级";
+    public String hello1(@RequestParam("name") String name) {
+        return "服务降级1";
+    }
+    @Override
+    public String hello2(@RequestParam("name") String name) {
+        return "服务降级2";
     }
 
 }

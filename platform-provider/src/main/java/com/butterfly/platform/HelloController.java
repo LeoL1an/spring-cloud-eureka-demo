@@ -16,9 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 public class HelloController {
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-    @GetMapping("/hello")
-    public String hello(HttpServletRequest request, String name) {
+    @GetMapping("/hello1")
+    public String hello1(HttpServletRequest request, String name) {
         logger.info("接收到来自[{}]的请求:{}", request.getRemoteAddr(), name);
         return "hello " + name + "!";
+    }
+    @GetMapping("/hello2")
+    public String hello2(HttpServletRequest request, String name) {
+        logger.info("接收到来自[{}]的请求:{}", request.getRemoteAddr(), name);
+        return "hello2 " + name + "!";
     }
 }

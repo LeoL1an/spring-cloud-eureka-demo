@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @FeignClient(name = "platform-provider", fallback = HelloFallbackService.class)
 public interface HelloRemote {
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    String hello(@RequestParam("name") String name);
+    @RequestMapping(value = "/hello1", method = RequestMethod.GET)
+    String hello1(@RequestParam("name") String name);
+
+    @RequestMapping(value = "/hello2", method = RequestMethod.GET)
+    String hello2(@RequestParam("name") String name);
 }

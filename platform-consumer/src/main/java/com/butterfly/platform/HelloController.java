@@ -2,6 +2,7 @@ package com.butterfly.platform;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +18,19 @@ public class HelloController {
     @Autowired
     private HelloRemote helloRemote;
 
-    @GetMapping("/hello")
-    public String hello(HttpServletRequest request, String name) {
-        request.setAttribute("11111111111", request.getRemoteAddr());
-        return helloRemote.hello(name);
+    @GetMapping("/hello1")
+    public String hello1(String name) {
+        return helloRemote.hello1(name);
+    }
+
+    @GetMapping("/hello2")
+    public String hello2(String name) {
+        return helloRemote.hello2(name);
+    }
+
+    @PostMapping("/hello3")
+    public String hello3(String name) {
+        return helloRemote.hello1(name);
     }
 
 }

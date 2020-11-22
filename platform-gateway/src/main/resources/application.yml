@@ -1,0 +1,35 @@
+server:
+  port: 10000
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}/${random.int}
+spring:
+  application:
+    name: platform-gateway
+  cloud:
+    gateway:
+      # 动态路由
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+#      # 静态路由
+#      routes:
+#        - id: default_id
+#          uri: lb://PLATFORM-CONSUMER
+#          uri: http://localhost:9001
+#          predicates:
+#            - RemoteAddr=192.168.3.88/0
+#            - Method=GET
+#            - Query=name
+#            - Query=name, 1.
+#            - Path=/hello1/**
+
+
+
+
+
