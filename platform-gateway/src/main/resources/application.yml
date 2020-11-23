@@ -12,23 +12,29 @@ spring:
     name: platform-gateway
   cloud:
     gateway:
-      # 动态路由
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-#      # 静态路由
-#      routes:
-#        - id: default_id
-#          uri: lb://PLATFORM-CONSUMER
+#      # 动态路由
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+      # 静态路由
+      routes:
+        - id: default_id
+          uri: lb://PLATFORM-CONSUMER
 #          uri: http://localhost:9001
-#          predicates:
+          predicates:
+            - Method=GET
 #            - RemoteAddr=192.168.3.88/0
-#            - Method=GET
 #            - Query=name
 #            - Query=name, 1.
-#            - Path=/hello1/**
+            - Path=/hello1/**
+          # 注意有个 s
+          filters:
+            - Custom=aa,bb
 
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
 
 
 
