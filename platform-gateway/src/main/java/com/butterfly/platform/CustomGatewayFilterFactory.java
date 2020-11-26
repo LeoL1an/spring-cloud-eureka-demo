@@ -4,7 +4,8 @@ import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractNameValueGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
-@Component
+
+//@Component
 public class CustomGatewayFilterFactory extends AbstractNameValueGatewayFilterFactory {
 
     @Override

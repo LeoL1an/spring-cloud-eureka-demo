@@ -10,9 +10,21 @@ eureka:
 spring:
   application:
     name: platform-gateway
+  redis:
+    host: localhost
+    timeout: 1000
+    database: 0
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 30
+        max-wait: 10000
+        max-idle: 30
+        min-idle: 10
+
   cloud:
     gateway:
-#      # 动态路由
+      # 动态路由
 #      discovery:
 #        locator:
 #          enabled: true
@@ -23,14 +35,20 @@ spring:
           uri: lb://PLATFORM-CONSUMER
 #          uri: http://localhost:9001
           predicates:
-            - Method=GET
+#            - Method=GET
 #            - RemoteAddr=192.168.3.88/0
 #            - Query=name
 #            - Query=name, 1.
             - Path=/hello1/**
-          # 注意有个 s
+#          # 注意有个 s
           filters:
-            - Custom=aa,bb
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@apiKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 3
+#            - Custom=aa,bb
+
 
 logging:
   level:
