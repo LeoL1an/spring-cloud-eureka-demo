@@ -1,6 +1,8 @@
 server:
   port: 8001
 spring:
+  profiles:
+    active: dev
   application:
     name: platform-config-server
   cloud:
@@ -11,9 +13,23 @@ spring:
           password: lchg0824
           search-paths: test-dir
           uri: https://gitee.com/LeopoldL1an/gitee-config
+
+---
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}:${random.int}
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: prod
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8000/eureka
   instance:
     instance-id: ${spring.application.name}:${server.port}:${random.int}

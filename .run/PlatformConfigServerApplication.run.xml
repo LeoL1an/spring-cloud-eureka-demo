@@ -7,7 +7,7 @@
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.butterfly.platform.platformconfigserver.PlatformConfigServerApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.butterfly.platform.PlatformConfigServerApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">
       <option name="Make" enabled="true" />

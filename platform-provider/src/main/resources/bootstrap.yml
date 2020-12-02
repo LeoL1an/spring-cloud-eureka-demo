@@ -1,7 +1,4 @@
 eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8000/eureka
   instance:
     instance-id: ${spring.application.name}:${server.port}:${random.int}
 spring:
@@ -13,3 +10,19 @@ spring:
       discovery:
         enabled: true
         service-id: platform-config-server
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+---
+spring:
+  profiles: prod
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8000/eureka

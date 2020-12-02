@@ -1,13 +1,11 @@
 server:
   port: 10000
 eureka:
-  client:
-    enabled: true
-    service-url:
-      defaultZone: http://localhost:8000/eureka
   instance:
     instance-id: ${spring.application.name}:${server.port}/${random.int}
 spring:
+  profiles:
+    active: dev
   application:
     name: platform-gateway
   redis:
@@ -25,35 +23,50 @@ spring:
   cloud:
     gateway:
       # 动态路由
-#      discovery:
-#        locator:
-#          enabled: true
-#          lower-case-service-id: true
+            discovery:
+              locator:
+                enabled: true
+                lower-case-service-id: true
       # 静态路由
-      routes:
-        - id: default_id
-          uri: lb://PLATFORM-CONSUMER
-#          uri: http://localhost:9001
-          predicates:
-#            - Method=GET
-#            - RemoteAddr=192.168.3.88/0
-#            - Query=name
-#            - Query=name, 1.
-            - Path=/hello1/**
-#          # 注意有个 s
-          filters:
-            - name: RequestRateLimiter
-              args:
-                key-resolver: '#{@apiKeyResolver}'
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 3
+#      routes:
+#        - id: default_id
+#          uri: lb://PLATFORM-CONSUMER
+#          #          uri: http://localhost:9001
+#          predicates:
+#            #            - Method=GET
+#            #            - RemoteAddr=192.168.3.88/0
+#            #            - Query=name
+#            #            - Query=name, 1.
+#            - Path=/hello1/**
+#          #          # 注意有个 s
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                key-resolver: '#{@apiKeyResolver}'
+#                redis-rate-limiter.replenishRate: 1
+#                redis-rate-limiter.burstCapacity: 3
 #            - Custom=aa,bb
 
 
 logging:
   level:
     org.springframework.cloud.gateway: debug
+---
+spring:
+  profiles: prod
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://eureka:8000/eureka
 
-
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka
 
 

@@ -9,6 +9,10 @@
     </parent>
     <artifactId>platform-provider</artifactId>
 
+    <properties>
+        <mainClass>com.butterfly.platform.PlatformProviderApplication</mainClass>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,4 +35,22 @@
         <!--    <artifactId>spring-cloud-starter-zipkin</artifactId>-->
         <!--</dependency>-->
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

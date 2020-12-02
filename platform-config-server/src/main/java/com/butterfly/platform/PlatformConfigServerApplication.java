@@ -1,4 +1,4 @@
-package com.butterfly.platform.platformconfigserver;
+package com.butterfly.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

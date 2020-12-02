@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  eureka:
+    container_name: eureka
+    build: platform-center-eureka
+    networks:
+      - mynet
+    ports:
+      - 8000:8000
+  config:
+    container_name: config
+    build: platform-config-server
+    networks:
+      - mynet
+    ports:
+      - 8001:8001
+  consumer:
+    container_name: consumer
+    build: platform-consumer
+    networks:
+      - mynet
+    ports:
+      - 9001:9001
+  provider:
+    container_name: provider
+    build: platform-provider
+    networks:
+      - mynet
+    ports:
+      - 9000:9000
+  gateway:
+    container_name: gateway
+    build: platform-gateway
+    networks:
+      - mynet
+    ports:
+      - 10000:10000
+networks:
+  mynet:
